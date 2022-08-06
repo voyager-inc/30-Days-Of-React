@@ -5,9 +5,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #d9d2f6;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.App{
+  text-align: center;
+
+}
+
+.cat-paradise{
+  font-family: 'Butterfly Kids';
+  font-size: 20px;
+}
+
+.special{
+  font-size: 40px;
+  color: rgb(0, 205, 0);
+  border: 2px dotted white;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.countries{
+  text-align: left;
 }

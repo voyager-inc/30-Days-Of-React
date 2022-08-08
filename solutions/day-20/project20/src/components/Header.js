@@ -23,6 +23,7 @@ export class Header extends Component {
             <p>There are <strong className='special'>{numberOfCountries}</strong> countries that have cat breeds</p>
             <p><strong className='special'>{countriesHasHighestBreeds}</strong> has the highest number of cat breeds</p>
           </div>
+          <hr/>
         </div>
       </div>
     )

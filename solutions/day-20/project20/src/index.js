@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { createRoot } from 'react-dom/client';
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import {Cats} from './components/Cats'
 import {Header} from './components/Header'
+import {CountryNav} from './components/CountryNav'
 
 
 class App extends Component {
@@ -99,11 +101,16 @@ class App extends Component {
     return (
       <div id='App'>
         <Header data={this.state}/>
+        <CountryNav countries={this.state.countries}/>
         <Cats data={this.state.data}/>
-        </div>
+      </div>
     )
   }
 }
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
+
+// const rootElement = document.getElementById('root');
+// const root = createRoot(rootElement); // createRoot(container!) if you use TypeScript
+// root.render(<App />);

@@ -85,3 +85,7 @@ code {
   padding: 30px;
 }
 
+.nav-cat {
+  display: flex;
+  flex-wrap: wrap;
+}

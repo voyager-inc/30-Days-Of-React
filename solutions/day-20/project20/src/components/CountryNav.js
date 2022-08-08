@@ -9,9 +9,9 @@ const Country = ({ country: { name, numBreeds } }) => {
 }
 
 // countries component
-export const CountryNav = ({countries}) => {
-  console.log(countries)
-  if (countries !== 'undefined'){
+export const CountryNav = ({countryInfo}) => {
+  if (countryInfo !== 'undefined'){
+    const countries = countryInfo.countries
     console.log(countries)
     const countryList = countries.map((country) => <Country key={country.name+'navigation'} country={country} />)
     return <div className='country-nav-container'>{countryList}</div>

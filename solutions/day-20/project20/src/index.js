@@ -12,11 +12,13 @@ class App extends Component {
     super(props)
     this.state = {
       data: [],
-      countries: [],
-      averageWeight: 0,
-      averageLifeSpan: 0,
-      numberOfCountries: 0,
-      countriesHasHighestBreeds: '',
+      countryInfo:{
+        countries: [],
+        averageWeight: 0,
+        averageLifeSpan: 0,
+        numberOfCountries: 0,
+        countriesHasHighestBreeds: ''
+      }
     }
   }
 
@@ -84,11 +86,14 @@ class App extends Component {
       const countriesHasHighestBreeds = countriesObject[0].name
 
       this.setState({
-        countries: countriesObject,
-        averageWeight: averageWeight, 
-        averageLifeSpan: averageLifeSpan,
-        numberOfCountries: numberOfCountries,
-        countriesHasHighestBreeds: countriesHasHighestBreeds
+        countryInfo:{
+          countries: countriesObject,
+          averageWeight: averageWeight, 
+          averageLifeSpan: averageLifeSpan,
+          numberOfCountries: numberOfCountries,
+          countriesHasHighestBreeds: countriesHasHighestBreeds
+        },
+
       })
 
     } catch (error) {
@@ -100,8 +105,8 @@ class App extends Component {
     console.log('render in App')
     return (
       <div id='App'>
-        <Header data={this.state}/>
-        <CountryNav countries={this.state.countries}/>
+        <Header data={this.state.countryInfo}/>
+        <CountryNav countryInfo={this.state.countryInfo}/>
         <Cats data={this.state.data}/>
       </div>
     )

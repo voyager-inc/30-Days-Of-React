@@ -3,9 +3,6 @@ import {Cat} from './Cat'
 
 
 export class Cats extends Component {
-  state = {
-    data: []
-  }
 
   render(){
     const listOfCats = this.props.data.map(item => {

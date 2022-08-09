@@ -86,22 +86,23 @@ class App extends Component {
     }
   }
 
-  processCatData(){
-    const catData = this.state.data.map(
-      item => {
-        return {
-          id: item.id, 
-          name: item.name,
-          origin: item.origin,
-          temperament: item.temperament, 
-          life_span: item.life_span, 
-          weight: item.weight, 
-          description: item.description,
-          imgURL: this.fetchCatImage(item.id)
+  async processCatData(){
+    const catData = await Promise.all(this.state.data.map(
+      async item => {
+          const imgURL = await this.fetchCatImage(item.id)
+          return {
+            id: item.id, 
+            name: item.name,
+            origin: item.origin,
+            temperament: item.temperament, 
+            life_span: item.life_span, 
+            weight: item.weight, 
+            description: item.description,
+            imgURL: imgURL
         }
       }
-    )
-    this.setState({catData,})
+    ))
+    this.setState({catData: catData, filteredCatData: catData})
   }
 
   fetchCountryData = async () => {
@@ -136,6 +137,13 @@ class App extends Component {
 
   handleClick = (event) => {
     console.log(event.currentTarget.id)
+    const country = event.currentTarget.id
+    
+    const filteredCatData = country === 'All' ? 
+      this.state.catData:
+      this.state.catData.filter(cat => cat.origin === country)
+
+    this.setState({filteredCatData})
   }
 
   render() {
@@ -144,7 +152,7 @@ class App extends Component {
         <Header data={this.state.countryInfo}/>
         <div onClick={this.handleClick}> Test</div>
         <CountryNav countryInfo={this.state.countryInfo} handleClick={this.handleClick}/>
-        <Cats data={this.state.data}/>
+        <Cats data={this.state.filteredCatData}/>
       </div>
     )
   }

@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       data: [],
       catData: [],
+      filteredCatData: [],
       countryInfo:{
         countries: [],
         averageWeight: 0,
@@ -59,7 +60,13 @@ class App extends Component {
         'numBreeds': allCountries.filter(country => (country === item)).length,
       })
     }
-    countriesWithBreedsNum.sort((a,b) => b.numBreeds-a.numBreeds)
+    if (countriesWithBreedsNum.length !== 0){
+      countriesWithBreedsNum.push({
+        'name': 'All',
+        'numBreeds': 67
+      })
+    }
+    countriesWithBreedsNum.sort((a,b) => a.numBreeds-b.numBreeds)
     
     return countriesWithBreedsNum
   }
@@ -72,20 +79,30 @@ class App extends Component {
     const urlId = `https://api.thecatapi.com/v1/images/search?breed_id=${breedId}`
     try {
       const response = await axios.get(urlId)
-      const data = await response.data[0]
-      this.setState({imgURL: data.url, width: data.width, height: data.height})
+      const data = await response.data[0].url
+      return data
     } catch (error) { 
       console.log(error)
     }
   }
 
-  // processCatData(){
-  //   if (this.state.data.length !== 0){
-  //     const catData = [...this.state.data]
-      
-  //   }
-    
-  // }
+  processCatData(){
+    const catData = this.state.data.map(
+      item => {
+        return {
+          id: item.id, 
+          name: item.name,
+          origin: item.origin,
+          temperament: item.temperament, 
+          life_span: item.life_span, 
+          weight: item.weight, 
+          description: item.description,
+          imgURL: this.fetchCatImage(item.id)
+        }
+      }
+    )
+    this.setState({catData,})
+  }
 
   fetchCountryData = async () => {
     const url = 'https://api.thecatapi.com/v1/breeds'
@@ -107,19 +124,26 @@ class App extends Component {
           numberOfCountries: numberOfCountries,
           countriesHasHighestBreeds: countriesHasHighestBreeds
         },
-
       })
 
+      if (this.state.data.length !== 0){
+        this.processCatData();
+      }
     } catch (error) {
       console.log(error)
     }
+  }
+
+  handleClick = (event) => {
+    console.log(event.currentTarget.id)
   }
 
   render() {
     return (
       <div id='App'>
         <Header data={this.state.countryInfo}/>
-        <CountryNav countryInfo={this.state.countryInfo}/>
+        <div onClick={this.handleClick}> Test</div>
+        <CountryNav countryInfo={this.state.countryInfo} handleClick={this.handleClick}/>
         <Cats data={this.state.data}/>
       </div>
     )

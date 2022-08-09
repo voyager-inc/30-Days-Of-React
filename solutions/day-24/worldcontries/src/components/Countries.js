@@ -42,11 +42,11 @@ const Country = ({props}) => {
   
   return (
     <div className='country-box'>
-      <div>
-        <img src={processedData.processedFlagsURL} alt='processedData.processedName'/>
+      <div className='country-flag-image-container' >
+        <img className='country-flag-image' src={processedData.processedFlagsURL} alt='processedData.processedName'/>
+      </div> 
+      <div className='country-info-box'>
         <p>{processedData.processedName}</p>
-      </div>
-      <div>
         <p>Captial: {processedData.processedCapital}</p>
         <p>Languages: {processedData.processedLanguages}</p>
         <p>Population: {processedData.processedPopulation}</p>

@@ -1,3 +1,8 @@
+*{
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +15,49 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.country-container {
+  background-color: #faf6f6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+  font-family: "Poppins",sans-serif;
+}
+
+.country-box{
+  padding: 30px;
+  background-color: #f9fbfe;
+  max-width: 25rem;
+  min-width: 25rem;
+  text-align: center;
+}
+.country-info-box {
+  background-color: #f9fbfe;
+  text-align: left;
+}
+.country-info-box p{
+  background-color: transparent;
+}
+
+.country-flag-image-container{
+  text-align: center;
+  align-items: center;
+  background-color: #f9fbfe;
+
+}
+
+.country-flag-image{
+  height: 12rem;
+  width: 20rem;
+
+}
+
+.header{
+  text-align: center;
+}
+
+h1{
+  color: #ffa502;
 }

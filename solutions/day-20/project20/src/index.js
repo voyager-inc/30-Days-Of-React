@@ -12,13 +12,14 @@ class App extends Component {
     super(props)
     this.state = {
       data: [],
+      catData: [],
       countryInfo:{
         countries: [],
         averageWeight: 0,
         averageLifeSpan: 0,
         numberOfCountries: 0,
         countriesHasHighestBreeds: ''
-      }
+      },
     }
   }
 
@@ -50,9 +51,6 @@ class App extends Component {
 
   getCountries(){
     const allCountries = this.state.data.map(cat => cat.origin);
-    const allId = this.state.data.map(cat => cat.id)
-    let uniqueId = [...new Set(allId)];
-    console.log(uniqueId, 'uniqueID')
     let uniqueCountries = [...new Set(allCountries)];
     const countriesWithBreedsNum = []
     for (let item of uniqueCountries){
@@ -67,18 +65,34 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount in App ")
     this.fetchCountryData()
   }
+
+  fetchCatImage = async (breedId) => {
+    const urlId = `https://api.thecatapi.com/v1/images/search?breed_id=${breedId}`
+    try {
+      const response = await axios.get(urlId)
+      const data = await response.data[0]
+      this.setState({imgURL: data.url, width: data.width, height: data.height})
+    } catch (error) { 
+      console.log(error)
+    }
+  }
+
+  // processCatData(){
+  //   if (this.state.data.length !== 0){
+  //     const catData = [...this.state.data]
+      
+  //   }
+    
+  // }
 
   fetchCountryData = async () => {
     const url = 'https://api.thecatapi.com/v1/breeds'
     try {
       const response = await axios.get(url)
       const data = await response.data
-      this.setState({
-        data,
-      })
+      this.setState({data: data})
       const averageWeight = this.getAverageNumberAllCats('weight').toFixed(2)
       const averageLifeSpan = this.getAverageNumberAllCats('lifespan').toFixed(2)
       const countriesObject = this.getCountries();
@@ -102,7 +116,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('render in App')
     return (
       <div id='App'>
         <Header data={this.state.countryInfo}/>

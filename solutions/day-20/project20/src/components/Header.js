@@ -10,7 +10,6 @@ export class Header extends Component {
       numberOfCountries,
       countriesHasHighestBreeds
     } = this.props.data
-    console.log(this.props.data)
 
     return (
       <div>

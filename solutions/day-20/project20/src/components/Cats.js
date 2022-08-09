@@ -9,19 +9,15 @@ export class Cats extends Component {
   
   componentDidUpdate(){
     if(this.state.data.length === 0){
-      console.log(this.props.data, 'componentDidUpdate in Cats')
       this.setState({data: this.props.data})
     }
-    console.log(this.state.data, 'componentDidUpdate in Cats')
-
-    //this.updateImagesToCats()
   }
 
   render(){
     const listOfCats = this.state.data.map(item => {
       return (
-        <div className='cat-card'> 
-          <Cat data={item} key={item.name}></Cat>
+        <div className='cat-card' key={item.name}> 
+          <Cat data={item}></Cat>
         </div>
       )
     })

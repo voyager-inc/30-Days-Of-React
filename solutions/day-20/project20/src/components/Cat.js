@@ -24,9 +24,6 @@ export class Cat extends Component {
       this.fetchCatImage(this.props.data.id)
   }
 
-  componentDidMount(){
-    console.log('componentDidMount in Cat')
-  }
   render(){
     const {
       name, 

@@ -12,7 +12,6 @@ const Country = ({ country: { name, numBreeds } }) => {
 export const CountryNav = ({countryInfo}) => {
   if (countryInfo !== 'undefined'){
     const countries = countryInfo.countries
-    console.log(countries)
     const countryList = countries.map((country) => <Country key={country.name+'navigation'} country={country} />)
     return <div className='country-nav-container'>{countryList}</div>
   } else {

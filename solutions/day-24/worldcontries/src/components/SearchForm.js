@@ -2,7 +2,7 @@ import React from 'react'
 
 export const SearchForm = ({props, handleChange}) => {
   return (
-    <div>
+    <div className="search-input">
       <input
           type="search"
           id='searchBox'
@@ -12,6 +12,5 @@ export const SearchForm = ({props, handleChange}) => {
         />
       <p>{props}</p>
     </div>
-
   )
 }

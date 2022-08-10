@@ -17,7 +17,19 @@ const App = () => {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    const result = processedData.filter(country => {
+      return (
+        country.name.toLowerCase().includes(searchTerm) ||
+        country.capital.toLowerCase().includes(searchTerm) || 
+        country.languages.toLowerCase().includes(searchTerm)
+      )
+    })
+    setSearchResult(result)
+  }, [processedData, searchTerm])
+
   const handleChange = (event) => {
+    console.log(event.target.value)
     setSearchTerm(event.target.value)
   }
 
@@ -27,7 +39,11 @@ const App = () => {
       const response = await fetch(url)
       const data = await response.json()
       setData(data)
+      console.log("fetched data", data)
       preprocessingData(data)
+      
+      //set initial search result
+      setSearchResult(processedData)
     } catch (error) {
       console.log(error)
     }
@@ -35,11 +51,11 @@ const App = () => {
 
   const preprocessingData = (data) => {
     if (data.length !== 0){
+      console.log('in preprocessing')
       const newData = data.map(country => {
         return preprocessEachData(country)
       })
       setProcessedData(newData)
-      console.log(newData)
     }
   }
 
@@ -67,8 +83,8 @@ const App = () => {
   return(
     <div className='app'>
       <Header props={data}/>
-      <SearchForm props={searchTerm}/>
-      <Countries props={processedData} handleChange={handleChange} />
+      <SearchForm props={searchTerm} handleChange={handleChange}/>
+      <Countries props={searchResult}  />
     </div>
   )
 }

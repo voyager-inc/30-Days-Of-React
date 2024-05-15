@@ -1,0 +1,82 @@
+*{
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.country-container {
+  background-color: #faf6f6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+  font-family: "Poppins",sans-serif;
+}
+
+.country-box{
+  padding: 30px;
+  background-color: #f9fbfe;
+  max-width: 25rem;
+  min-width: 25rem;
+  text-align: center;
+}
+.country-info-box {
+  background-color: #f9fbfe;
+  text-align: left;
+}
+.country-info-box p{
+  background-color: transparent;
+}
+
+.country-flag-image-container{
+  text-align: center;
+  align-items: center;
+  background-color: #f9fbfe;
+
+}
+
+.country-flag-image{
+  height: 12rem;
+  width: 20rem;
+
+}
+
+.header{
+  text-align: center;
+}
+
+h1{
+  color: #ffa502;
+}
+
+.search-input {
+  width: 100%;
+  text-align: center;
+  background-color: #f9fbfe;
+}
+
+.search-input input{
+  color: orange;
+  width: 50%;
+  height: 5rem;
+  margin: 3rem auto;
+  text-indent: 2rem;
+  outline: none;
+  border: 0.2rem solid #f8e7e7;
+  font-size: 2rem;
+  border-radius: 3rem;
+  background: #faf6f6;
+}
